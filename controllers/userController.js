@@ -12,12 +12,11 @@ const getRTOUsers = async (req, resp)=>{
     resp.json(data);
 }
 const addRTOUser = async (req, resp)=>{
-    const { RTO_ID } = req.body;
+    const { RTO_ID, user } = req.body;
     await db.initializeTanentByRTOId(RTO_ID);
     await db.User.create({
-        id: 4,
-        username: 'msalik42',
-        password: "123456"
+        username: user.name,
+        password: user.password
     });
     const data = await db.User.findAll()
     resp.json(data);
